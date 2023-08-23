@@ -1,0 +1,63 @@
+#screen{
+    position:absolute;
+    top:5%;
+    left:40%;
+    width:26em;
+    height:9em;
+    background-color: black;
+    border:1px;
+}
+
+#calc_body{
+    position:absolute;
+    left:40%;
+    top:25%;
+    width:26em;
+    height:30em;
+}
+#result{
+    position:absolute;
+    left:42%;
+    top:16%;
+    color:red;
+}
+
+button{
+    background-color:white;
+    border-radius: 2em;
+    font-weight:bold;
+    width:5em;
+    height:3em;
+    position:absolute;
+}
+.row1{
+    top:40em;
+}
+.row2{
+    top:36em;
+}
+.row3{
+    top:32em;
+}
+.row4{
+    top:28em;
+}
+.col1{
+    left:46em;
+}
+.col2{
+    left:52em;
+}
+.col3{
+    left:58em;
+}
+.col4{
+    left:64em;
+}
+.col5{
+    left:70em;
+}
+.row5{
+    top:24em;
+}
+
