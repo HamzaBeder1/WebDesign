@@ -39,16 +39,33 @@ audio.play();
     document.getElementById('result').textContent+=txt;
  }
 
+ function showLeftParentheses(){
+    if(state == 1){
+        clearDisplay();
+        state = 0;
+    }
+    document.getElementById('result').textContent+="(";
+ }
+
+ function showRightParentheses(){
+    if(state == 1){
+        clearDisplay();
+        state = 0;
+    }
+    document.getElementById('result').textContent+=")";
+ }
+
  function clearDisplay(event){
     document.getElementById('result').textContent = "";
  }
 
  prefixToPostfix = ()=>{
-    let exp = document.getElementById('result').textContent;
+    //let exp = document.getElementById('result').textContent;
+    let exp = "9*6+(9*3)/2"
     exp = exp.split("x").join("*");
     const operators = /[()+-/*]/
     const nums = /[0-9.]/
-    precedence = {
+    const precedence = {
         "+": 25,
         "-": 25,
         "*": 50,
@@ -123,7 +140,7 @@ audio.play();
     state = 1;
  }
 
-fillScreen();
+/*fillScreen();
 fillBody();
 var buttons = document.querySelectorAll('.display');
 buttons.forEach((button)=>{button.addEventListener('click', clickSound);});
@@ -135,8 +152,9 @@ var clearButton = document.querySelectorAll('.clear');
 clearButton.forEach((button)=>{button.addEventListener('click', clearDisplay)});
 
 
+*/
 
-
+prefixToPostfix()
 
 
 

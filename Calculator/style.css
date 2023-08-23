@@ -30,6 +30,18 @@ button{
     height:3em;
     position:absolute;
 }
+.leftarrow{
+    background-image: url(../../images/leftarrow.png);
+    background-size:3em;
+    background-repeat:no-repeat;
+    background-position: center center;
+}
+.rightarrow{
+    background-image: url(../../images/rightarrow.png);
+    background-size:3em;
+    background-repeat:no-repeat;
+    background-position: center center;
+}
 .row1{
     top:40em;
 }
@@ -60,4 +72,8 @@ button{
 .row5{
     top:24em;
 }
+.row7{
+    top:16em;
+}
+
 
