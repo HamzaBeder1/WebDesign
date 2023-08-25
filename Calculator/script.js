@@ -70,6 +70,7 @@ fillBody = ()=>{
     }
  }
 
+
  function updateDisplay(event){
     let txt = event.currentTarget.innerText;
     if(state == 1){
