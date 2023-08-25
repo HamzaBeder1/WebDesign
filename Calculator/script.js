@@ -3,7 +3,6 @@ let screen = document.getElementById("screen");
 let calc_body = document.getElementById("calc_body");
 let cursor = document.getElementById("cursor");
 let id = null;
-
 window.addEventListener('load', () =>{
     screen.style.position = 'absolute';
     calc_body.style.position = 'absolute';
@@ -77,9 +76,7 @@ fillBody = ()=>{
         state = 0;
     }
     document.getElementById('result').textContent+=txt;
-    var range = document.createRange();
-    range.setStart("")
-    cursor.style.left = parseInt(cursor.style.left)+20+'px';
+    cursor.style.left = document.getElementById("result").offsetWidth + 620+ 'px';
  }
 
  function showLeftParentheses(){
@@ -100,6 +97,7 @@ fillBody = ()=>{
 
  function clearDisplay(event){
     document.getElementById('result').textContent = "";
+    cursor.style.left = 620 + 'px';
  }
 
  prefixToPostfix = ()=>{
