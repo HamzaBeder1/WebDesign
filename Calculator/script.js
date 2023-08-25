@@ -25,10 +25,7 @@ fillBody = ()=>{
  
  }
 
- function clickSound(event){
-    var audio = new Audio('click.flac');
-audio.play();
- }
+
 
  function updateDisplay(event){
     let txt = event.currentTarget.innerText;
