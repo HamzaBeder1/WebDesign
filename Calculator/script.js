@@ -70,7 +70,6 @@ fillBody = ()=>{
     }
  }
 
-
  function updateDisplay(event){
     let txt = event.currentTarget.innerText;
     if(state == 1){
@@ -182,6 +181,8 @@ fillBody = ()=>{
     document.getElementById('result').textContent = result;
     state = 1;
  }
+
+
 
 
 
