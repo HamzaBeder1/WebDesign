@@ -1,4 +1,35 @@
 let state = 0;
+let screen = document.getElementById("screen");
+let calc_body = document.getElementById("calc_body");
+let cursor = document.getElementById("cursor");
+let id = null;
+
+window.addEventListener('load', () =>{
+    screen.style.position = 'absolute';
+    calc_body.style.position = 'absolute';
+    cursor.style.position = 'absolute';
+    screen.style.top = 6;
+    screen.style.left = 600;
+    calc_body.style.top = 150;
+    calc_body.style.left = 600;
+    cursor.style.top = 90;
+    cursor.style.left = 615;
+
+    blinkCursor();
+    fillScreen();
+    fillBody();
+    clickSound();
+    prefixToPostfix();
+
+    var buttons = document.querySelectorAll('.display');
+    buttons.forEach((button)=>{button.addEventListener('click', clickSound);});
+    var buttons2 = document.querySelectorAll('.display');
+    buttons2.forEach((button)=>{button.addEventListener('click',updateDisplay);})
+    var enter1 = document.querySelectorAll('.enter');
+    enter1.forEach((button)=>{button.addEventListener('click',showResult)})
+    var clearButton = document.querySelectorAll('.clear');
+    clearButton.forEach((button)=>{button.addEventListener('click', clearDisplay)});
+});
 
 fillScreen = ()=>{
     let screen = document.getElementById("screen");
@@ -25,7 +56,19 @@ fillBody = ()=>{
  
  }
 
+ function clickSound(event){
+    var audio = new Audio('click.flac');
+    audio.play();
+ }
 
+ function blinkCursor(){
+    var elem = document.getElementById("cursor");   
+    clearInterval(id);
+    id = setInterval(hide, 1000);
+    function hide() {
+    elem.hidden = !elem.hidden;
+    }
+ }
 
  function updateDisplay(event){
     let txt = event.currentTarget.innerText;
@@ -34,6 +77,9 @@ fillBody = ()=>{
         state = 0;
     }
     document.getElementById('result').textContent+=txt;
+    var range = document.createRange();
+    range.setStart("")
+    cursor.style.left = parseInt(cursor.style.left)+20+'px';
  }
 
  function showLeftParentheses(){
@@ -57,8 +103,7 @@ fillBody = ()=>{
  }
 
  prefixToPostfix = ()=>{
-    //let exp = document.getElementById('result').textContent;
-    let exp = "9*6+(9*3)/2"
+    let exp = document.getElementById('result').textContent;
     exp = exp.split("x").join("*");
     const operators = /[()+-/*]/
     const nums = /[0-9.]/
@@ -136,25 +181,6 @@ fillBody = ()=>{
     document.getElementById('result').textContent = result;
     state = 1;
  }
-
-/*fillScreen();
-fillBody();
-var buttons = document.querySelectorAll('.display');
-buttons.forEach((button)=>{button.addEventListener('click', clickSound);});
-var buttons2 = document.querySelectorAll('.display');
-buttons2.forEach((button)=>{button.addEventListener('click',updateDisplay);})
-var enter1 = document.querySelectorAll('.enter');
-enter1.forEach((button)=>{button.addEventListener('click',showResult)})
-var clearButton = document.querySelectorAll('.clear');
-clearButton.forEach((button)=>{button.addEventListener('click', clearDisplay)});
-
-
-*/
-
-prefixToPostfix()
-
-
-
 
 
 
