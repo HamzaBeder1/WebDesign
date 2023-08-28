@@ -1,13 +1,18 @@
 <html>
 <head>
-    <title>Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
+
 <body id = "b">
-<canvas id = "screen"></canvas>
-<canvas id = "calc_body"></canvas>
-<canvas id = "cursor"></canvas>
-<span id = "result"></span>
+  <link href = "style.css" rel = "stylesheet"> 
+  <canvas id = "screen"></canvas>
+  <canvas id = "cursor"></canvas>
+  <span id = "result"></span>
+
+<div>
+<canvas id = "calc_body">
+</canvas>
 <div id = "buttons">
     <button class = "row1 col1 display">1</button>
     <button class = "row1 col2 display">2</button>
@@ -25,8 +30,8 @@
     <button class = "row4 col5 clear">CLEAR</button>
     <button class = "row5 col3 parentheses" onclick = "showLeftParentheses()">&#x2985</button>
     <button class = "row5 col4 parentheses" onclick = "showRightParentheses()">&#x2986</button>
-    <button class = "row7 col2 leftarrow"></button>
-    <button class = "row7 col4 rightarrow"></button>
+    <button class = "row7 col2 leftarrow">	&#8592</button>
+    <button class = "row7 col4 rightarrow">&#8594</button>
     <button class = "row2 col4 display">+</button>
     <button class = "row2 col5 display">-</button>
     <button class = "row3 col4 display">x</button>
@@ -34,7 +39,7 @@
     <button class = "row1 col4 enter">ENTER</button>
     
 </div>
+</div>
 <script src = "script.js"></script>
-
 </body>
 </html>
