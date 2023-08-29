@@ -1,0 +1,28 @@
+body{
+    display:flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+}
+
+#description{
+    color:red;
+}
+
+#header{
+    background-color:gray;
+    width:100%;
+    text-align:center;
+}
+
+#text{
+    width:50%;
+    background-color:white;
+    flex-grow:1;
+    resize:none;
+    white-space:nowrap;
+}
+
+.sticky{
+  position: fixed;
+  top:0;
+}
