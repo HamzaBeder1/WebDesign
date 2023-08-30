@@ -1,6 +1,5 @@
 let z;
-
-
+let storeTarget;
 window.onload = (event)=>{
     window.onscroll = function() {scroll()};
     //window.addEventListener("keydown", moveCursorAtTheEnd);
@@ -25,22 +24,37 @@ function DisplaySuggestions(event){
     let menu = document.getElementById("Suggestions");
 
     let matches = z.findMatches(event.target.textContent);
-    let previousMatches = document.querySelectorAll("matches");
+    let previousMatches = document.querySelectorAll(".matches");
     previousMatches.forEach(suggestion => suggestion.remove());
     for(let i = 0; i < matches.length; i++){
         const newSuggestion = document.createElement("tr");
-        newSuggestion.id = "matches";
-        newSuggestion.style.borderBottom = "solid 1px black"
+        newSuggestion.className = "matches";
+        newSuggestion.style.cursor = "pointer";
+        newSuggestion.style.padding = 5;
+        if(i != matches.length - 1)
+            newSuggestion.style.borderBottom = "5px solid black"
         const node = document.createTextNode(`${matches[i]}`);
         newSuggestion.appendChild(node);
         menu.appendChild(newSuggestion);
     }
+    let suggestions = document.querySelectorAll(".matches");
+    suggestions = Array.prototype.slice.call(suggestions);
+    suggestions.forEach(function(s){s.addEventListener("click", correctText)})
     menu.style.position = 'absolute';
     menu.style.top = event.clientY;
     menu.style.left = event.clientX;
     menu.style.display = 'inline';
+    storeTarget = event.target;
+    }
+}
 
-
+function correctText(event){
+    if(event.target.className == "matches"){
+        let correction = event.target.textContent;
+        const Menu = event.target.parentNode;
+        Menu.style.display = "none";
+        storeTarget.textContent = correction;
+        storeTarget.style.textDecoration = "none";
     }
 }
 
@@ -67,6 +81,7 @@ function checkSpelling(event){
     let updatedText = ``;
     if(event.keyCode == 13){
         let txt = el.textContent;
+        txt= txt.replace(/\s+/g,' ');
         el.textContent = "";
         txt = txt.split(" ");
         for(let i = 0; i < txt.length; i++){
@@ -95,7 +110,7 @@ class Node{
 class Trie{
     constructor(){
         this.root = new Node();
-        this.maxDistance = 1;
+        this.maxDistance = 2;
     }
 
     addWord = function(word){
@@ -145,13 +160,19 @@ class Trie{
                 console.log("Stop");
             this.findMatches_aux(target, ch, this.root.children[ch], currRow, matches);
         }
-        let i = 0;
-        for(let word in matches){
-            if(word[0] != target[0]){
+        const properWord = /^[a-zA-Z]+$/;
+        for(let i = 0; i < matches.length; i++)
+        {
+
+            if(matches[i][0] != target[0] || properWord.test(matches[i]) != true){
                 matches.splice(i,1);
+                i--;
+            }
+            else{
+                console.log("Stop");
             }
         }
-        return matches;
+        return matches.slice(0, 3);
     }
 
     findMatches_aux = function(target, ch, node, prevRow, matches){
