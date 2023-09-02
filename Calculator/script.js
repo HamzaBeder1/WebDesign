@@ -3,34 +3,21 @@ let screen = document.getElementById("screen");
 let calc_body = document.getElementById("calc_body");
 let cursor = document.getElementById("cursor");
 let id = null;
-let positionBuffer = []
-let positionBufferIdx = 0
 
 window.addEventListener('load', () => {
-    screen.style.position = 'absolute';
-    calc_body.style.position = 'absolute';
-    cursor.style.position = 'absolute';
-    screen.style.top = 6;
-    screen.style.left = 600;
-    calc_body.style.top = 150;
-    calc_body.style.left = 600;
-    cursor.style.top = 90;
-    cursor.style.left = 615;
-
-    blinkCursor();
+    
     fillScreen();
     fillBody();
+    blinkCursor();
 
     var buttons2 = document.querySelectorAll('.display');
     buttons2.forEach((button) => { button.addEventListener('click', updateDisplay); })
-    var enter1 = document.querySelectorAll('.enter');
-    enter1.forEach((button) => { button.addEventListener('click', showResult) })
-    var clearButton = document.querySelectorAll('.clear');
-    clearButton.forEach((button) => { button.addEventListener('click', clearDisplay) });
-    var leftarrow = document.querySelectorAll('.leftarrow');
-    leftarrow.forEach((button) => { button.addEventListener('click', updateBuffer) });
-    var rightarrow = document.querySelectorAll('.rightarrow');
-    rightarrow.forEach((button) => { button.addEventListener('click', updateBuffer) });
+    var enter1 = document.getElementById("enter");
+    enter1.addEventListener('click', showResult);
+    var clearButton = document.getElementById("clear");
+    clearButton.addEventListener('click', clearDisplay);
+    var leftarrow = document.getElementByClassName("leftarrow");
+    var rightarrow = document.getElementByClassName("rightarrow");
 });
 
 fillScreen = () => {
@@ -64,29 +51,6 @@ function blinkCursor() {
     }
 }
 
-function updateBuffer(event) {
-    if ($(event.target).hasClass("display") || $(event.target).hasClass("enter")) {
-        const newPosition = document.getElementById("result").offsetWidth + 620 + 'px';
-        cursor.style.left = newPosition;
-        positionBuffer.push(newPosition);
-        positionBufferIdx++;
-    }
-    else if ($(event.target).hasClass("clear")) {
-        cursor.style.left = 620 + 'px';
-        positionBuffer = [620];
-        positionBufferIdx = 0;
-    }
-    else if ($(event.target).hasClass("leftarrow")) {
-        if (positionBufferIdx >= 0) {
-            cursor.style.left = positionBuffer[positionBufferIdx--];
-        }
-    }
-    else if ($(event.target).hasClass("rightarrow")) {
-        if (positionBufferIdx < positionBuffer.length - 1) {
-            cursor.style.left = positionBuffer[++positionBufferIdx]
-        }
-    }
-}
 
 function updateDisplay(event) {
     let txt = event.currentTarget.innerText;
@@ -95,7 +59,6 @@ function updateDisplay(event) {
         state = 0;
     }
     document.getElementById('result').textContent += txt;
-    updateBuffer(event);
 }
 
 function showLeftParentheses() {
@@ -116,7 +79,6 @@ function showRightParentheses() {
 
 function clearDisplay(event) {
     document.getElementById('result').textContent = "";
-    updateBuffer(event);
 }
 
 prefixToPostfix = () => {
@@ -141,7 +103,7 @@ prefixToPostfix = () => {
             while (nums.test(exp[0])) {
                 totalNum += exp.shift();
             }
-            q.push(parseInt(totalNum));
+            q.push(parseFloat(totalNum));
         }
         else if (operators.test(token)) {
             if (token == "(") {
@@ -197,6 +159,5 @@ function showResult(event) {
     const result = s.pop();
     document.getElementById('result').textContent = '';
     document.getElementById('result').textContent = result;
-    updateBuffer(event);
     state = 1;
 }
