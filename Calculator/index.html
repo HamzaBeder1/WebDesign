@@ -1,45 +1,59 @@
-<html>
-<head>
+<!DOCTYPE html>
+  <head>
     <title>Calculator</title>   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-</head>
+    <link href = "style.css" rel = "stylesheet"> 
+  </head>
 
-<body id = "b">
-  <link href = "style.css" rel = "stylesheet"> 
-  <canvas id = "screen"></canvas>
+  <body id = "b">
+    <canvas id = "calc_body"></canvas>
+    <canvas id = "screen"></canvas>
   <canvas id = "cursor"></canvas>
   <span id = "result"></span>
 
-<div>
-<canvas id = "calc_body">
-</canvas>
-<div id = "buttons">
-    <button class = "row1 col1 display">1</button>
-    <button class = "row1 col2 display">2</button>
-    <button class = "row1 col3 display">3</button>
-    <button class = "row2 col1 display">4</button>
-    <button class = "row2 col2 display">5</button>
-    <button class = "row2 col3 display">6</button>
-    <button class = "row3 col1 display">7</button>
-    <button class = "row3 col2 display">8</button>
-    <button class = "row3 col3 display">9</button>
-    <button class = "row4 col1 display">0</button>
-    <button class = "row4 col2 display">.</button>
-    <button class = "row4 col3 display">-</button>
-    <button class = "row4 col4">DEL</button>
-    <button class = "row4 col5 clear">CLEAR</button>
-    <button class = "row5 col3 parentheses" onclick = "showLeftParentheses()">&#x2985</button>
-    <button class = "row5 col4 parentheses" onclick = "showRightParentheses()">&#x2986</button>
-    <button class = "row7 col2 leftarrow">	&#8592</button>
-    <button class = "row7 col4 rightarrow">&#8594</button>
-    <button class = "row2 col4 display">+</button>
-    <button class = "row2 col5 display">-</button>
-    <button class = "row3 col4 display">x</button>
-    <button class = "row3 col5 display">/</button>
-    <button class = "row1 col4 enter">ENTER</button>
-    
-</div>
-</div>
-<script src = "script.js"></script>
+    <table id = "buttons">
+      <tr>
+        <td><button>&#8592</button></td>
+      <td><button>&#8594</button></td>
+      </tr>
+
+      <tr>
+      <td><button onclick = "showLeftParentheses()">&#x2985</button></td>
+      <td><button onclick = "showRightParentheses()">&#x2986</button></td>
+      </tr>
+  
+      <tr>
+        <td><button class = "display">0</button></td>
+        <td><button class = "display">.</button></td>
+        <td><button class = "display">-</button></td>
+        <td><button class = "display">DEL</button></td>
+        <td><button class = "clear">CLEAR</button></td>
+      </tr>
+
+      <tr>
+        <td><button class = "display">7</button></td>
+        <td><button class = "display">8</button></td>
+        <td><button class = "display">9</button></td>
+        <td><button class = "display">x</button></td>
+        <td><button class = "display">/</button></td>
+      </tr>
+
+      <tr>
+        <td><button class = "display">4</button></td>
+        <td><button class = "display">5</button></td>
+        <td><button class = "display">6</button></td>
+        <td><button class = "display">+</button></td>
+        <td><button class = "display">-</button></td>
+      </tr>
+
+      <tr>
+        <td><button class = "display">1</button></td></td>
+        <td><button class = "display">2</button></td>
+        <td><button class = "display">3</button></td>
+        <td><button class = "enter">ENTER</button></td> 
+      </tr>
+
+    </table>
+    <script src = "script.js"></script>
 </body>
 </html>
